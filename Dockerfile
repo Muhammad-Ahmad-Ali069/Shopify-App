@@ -52,5 +52,6 @@ RUN cd /app
 
 RUN php composer.phar build
 
+USER root
 
 ENTRYPOINT [ "/app/entrypoint.sh" ]
