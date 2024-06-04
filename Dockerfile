@@ -32,8 +32,8 @@ RUN chmod -R o+w public
 
 RUN addgroup www-data nginx
 
-RUN chmod 750 /var/lib/nginx
-RUN chgrp -R www-data /var/lib/nginx
+# RUN chmod 750 /var/lib/nginx
+# RUN chgrp -R www-data /var/lib/nginx
 
 
 # RUN adduser subAdmin
