@@ -5,6 +5,7 @@ RUN apk update && apk add --update nodejs npm \
     php-pdo_sqlite php-pdo_mysql php-pdo_pgsql php-simplexml php-fileinfo php-dom php-tokenizer php-xml php-xmlwriter php-session\
     openrc bash nginx
 # RUN curl -sS https://getcomposer.org/installer | php -- --version=2.3.10 && mv composer.phar /usr/local/bin/composer
+RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo
 # RUN docker-php-ext-enable php-zip
 COPY --chown=www-data:www-data web /app
