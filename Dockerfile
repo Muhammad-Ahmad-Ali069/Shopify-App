@@ -43,8 +43,8 @@ RUN adduser -D subAdmin
 
 RUN passwd -u subAdmin
 
-RUN cd /app/frontend
-RUN npm install
+RUN cd /app/frontend && npm install
+
 RUN SHOPIFY_API_KEY=$SHOPIFY_API_KEY npm run build
 RUN cd /app
 RUN su - subAdmin

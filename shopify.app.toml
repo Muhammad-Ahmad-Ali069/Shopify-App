@@ -1,3 +1,29 @@
-# This file stores configurations for your Shopify app.
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
 
-scopes = "write_products"
+client_id = "dcc17e3993d940df2f03a247b7723cfb"
+name = "my test app"
+handle = "my-test-app-1253"
+application_url = "https://orange-assumptions-palmer-soma.trycloudflare.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "quickstart-fb98850f.myshopify.com"
+include_config_on_deploy = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_customers,read_order_edits,read_orders,unauthenticated_read_customers,unauthenticated_write_customers,write_customers,write_order_edits,write_orders"
+
+[auth]
+redirect_urls = [
+  "https://orange-assumptions-palmer-soma.trycloudflare.com/auth/callback",
+  "https://orange-assumptions-palmer-soma.trycloudflare.com/auth/shopify/callback",
+  "https://orange-assumptions-palmer-soma.trycloudflare.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-04"
+
+[pos]
+embedded = false
