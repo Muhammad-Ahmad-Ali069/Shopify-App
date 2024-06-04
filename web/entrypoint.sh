@@ -7,8 +7,8 @@ sed -i "s/listen PORT/listen $PORT/g" /etc/nginx/nginx.conf
 
 cd /app
 
-echo "Running database migrations..."
-php artisan migrate --force
+# echo "Running database migrations..."
+# php artisan migrate --force
 
 echo "Starting nginx server..."
 openrc
