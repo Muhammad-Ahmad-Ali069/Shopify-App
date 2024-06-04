@@ -45,7 +45,7 @@ RUN chmod 755 -R /app/frontend
 
 RUN cd /app/frontend && npm install
 
-RUN RUN cd /app/frontend && SHOPIFY_API_KEY=$SHOPIFY_API_KEY npm run build
+RUN cd /app/frontend && SHOPIFY_API_KEY=$SHOPIFY_API_KEY npm run build
 RUN cd /app
 RUN su - subAdmin
 RUN php composer.phar build
