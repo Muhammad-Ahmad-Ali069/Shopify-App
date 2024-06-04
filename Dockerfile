@@ -25,8 +25,6 @@ RUN cp /app/.env.example /app/.env
 RUN php artisan key:generate
 # RUN php artisan migrate --force
 
-ENTRYPOINT [ "/app/entrypoint.sh" ]
-
 RUN chmod 755 -R /app
 RUN chmod -R o+w storage
 RUN chmod -R o+w bootstrap
@@ -51,3 +49,6 @@ RUN RUN cd /app/frontend && SHOPIFY_API_KEY=dcc17e3993d940df2f03a247b7723cfb npm
 RUN cd /app
 RUN su - subAdmin
 RUN php composer.phar build
+
+
+ENTRYPOINT [ "/app/entrypoint.sh" ]
