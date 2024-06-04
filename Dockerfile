@@ -32,8 +32,8 @@ RUN chmod -R o+w public
 
 RUN addgroup www-data nginx
 
-# RUN chmod 750 /var/lib/nginx
-# RUN chgrp -R www-data /var/lib/nginx
+RUN chmod 750 /var/lib/nginx
+RUN chgrp -R www-data /var/lib/nginx
 
 
 # RUN adduser subAdmin
@@ -53,5 +53,7 @@ RUN cd /app
 RUN php composer.phar build
 
 USER root
-
+RUN cd /app/storage/certs/
+RUN chown www-data:www-data ca-certificate.crt
+RUN cd /app
 ENTRYPOINT [ "/app/entrypoint.sh" ]
