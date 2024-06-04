@@ -1,4 +1,8 @@
-FROM php:8.1-fpm-ubuntu
+FROM ubuntu:latest
+RUN apt-get update && apt-get install -y software-properties-common
+RUN add-apt-repository ppa:ondrej/php
+RUN apt-get update && apt-get install -y php8.1
+CMD ["php", "-v"]
 
 ARG SHOPIFY_API_KEY
 ENV SHOPIFY_API_KEY=$SHOPIFY_API_KEY
