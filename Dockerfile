@@ -1,31 +1,20 @@
-FROM ubuntu:latest
-RUN apt-get update && apt-get install -y software-properties-common
-RUN add-apt-repository ppa:ondrej/php
-RUN apt-get update && apt-get install -y php8.1
-CMD ["php", "-v"]
-
+FROM php:8.1-fpm-alpine
 ARG SHOPIFY_API_KEY
 ENV SHOPIFY_API_KEY=$SHOPIFY_API_KEY
-
-RUN  apt install -y nodejs npm php-pdo-sqlite php-pdo-mysql php-pdo-pgsql php-simplexml php-fileinfo php-dom php-tokenizer php-xml php-xmlwriter php-session openrc bash nginx
-
-
+RUN apk update && apk add --update nodejs npm \
+    php-pdo_sqlite php-pdo_mysql php-pdo_pgsql php-simplexml php-fileinfo php-dom php-tokenizer php-xml php-xmlwriter php-session\
+    openrc bash nginx
 # RUN curl -sS https://getcomposer.org/installer | php -- --version=2.3.10 && mv composer.phar /usr/local/bin/composer
-RUN apt install -y php8.1-mysql
-
+RUN apk add php8-mysql
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo
 # RUN docker-php-ext-enable php-zip
-
 COPY --chown=www-data:www-data web /app
 WORKDIR /app
-
 # Overwrite default nginx config
 COPY web/nginx.conf /etc/nginx/nginx.conf
-
 # Use the default production configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
-
 # RUN composer install
 # RUN touch /app/storage/db.sqlite
 # RUN chown www-data:www-data /app/storage/db.sqlite
@@ -43,9 +32,11 @@ RUN chmod -R o+w storage
 RUN chmod -R o+w bootstrap
 RUN chmod -R o+w public
 
-RUN groupadd www-data
+RUN addgroup www-data nginx
 
-RUN chown -R www-data:www-data /var/lib/nginx
+RUN chmod 750 /var/lib/nginx
+RUN chgrp -R www-data /var/lib/nginx
+
 
 # RUN adduser subAdmin
 RUN adduser -D subAdmin
