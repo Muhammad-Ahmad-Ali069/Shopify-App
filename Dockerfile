@@ -7,9 +7,8 @@ CMD ["php", "-v"]
 ARG SHOPIFY_API_KEY
 ENV SHOPIFY_API_KEY=$SHOPIFY_API_KEY
 
-RUN apt update && apt install -y nodejs npm \
-    php-pdo-sqlite php-pdo-mysql php-pdo-pgsql php-simplexml php-fileinfo php-dom php-tokenizer php-xml php-xmlwriter php-session\
-    openrc bash nginx
+RUN  apt install -y nodejs npm php-pdo-sqlite php-pdo-mysql php-pdo-pgsql php-simplexml php-fileinfo php-dom php-tokenizer php-xml php-xmlwriter php-session openrc bash nginx
+
 
 # RUN curl -sS https://getcomposer.org/installer | php -- --version=2.3.10 && mv composer.phar /usr/local/bin/composer
 RUN apt install -y php8.1-mysql
