@@ -43,9 +43,11 @@ RUN adduser -D subAdmin
 
 RUN passwd -u subAdmin
 
+RUN chmod 755 -R /app/frontend
+
 RUN cd /app/frontend && npm install
 
-RUN SHOPIFY_API_KEY=$SHOPIFY_API_KEY npm run build
+RUN SHOPIFY_API_KEY=dcc17e3993d940df2f03a247b7723cfb npm run build
 RUN cd /app
 RUN su - subAdmin
 RUN php composer.phar build
