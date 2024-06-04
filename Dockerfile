@@ -53,7 +53,6 @@ RUN cd /app
 RUN php composer.phar build
 
 USER root
-RUN cd /app/storage/certs/
-RUN chown www-data:www-data ca-certificate.crt
+RUN cd /app/storage/certs/ && chown www-data:www-data ca-certificate.crt
 RUN cd /app
 ENTRYPOINT [ "/app/entrypoint.sh" ]
